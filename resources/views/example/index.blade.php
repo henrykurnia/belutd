@@ -1,345 +1,409 @@
-@extends('example.layouts.default.dashboard')
+@extends('example.layouts.default.landing')
+
 @section('content')
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <div class="p-6">
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        {{-- Card Statistik --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
-
-            <!-- Total Produk -->
-            <div class="bg-white rounded-xl shadow p-5 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center">
-                    <div class="p-3 bg-[#F5F0FF] rounded-xl dark:bg-gray-700">
-                        <svg class="w-6 h-6 text-[#1B4EF5] dark:text-[#3874FF]" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                            <path fill-rule="evenodd"
-                                d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-gray-500 text-sm font-medium dark:text-gray-400">Total Produk</h3>
-                        <p class="text-3xl font-bold text-[#1B4EF5] mt-1 dark:text-[#3874FF]">
-                            {{ number_format($totalProducts, 0, ',', '.') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Total Stok -->
-            <div class="bg-white rounded-xl shadow p-5 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center">
-                    <div class="p-3 bg-blue-50 rounded-xl dark:bg-blue-900/20">
-                        <svg class="w-6 h-6 text-[#3874FF] dark:text-[#5996FF]" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-gray-500 text-sm font-medium dark:text-gray-400">Total Stok</h3>
-                        <p class="text-3xl font-bold text-[#3874FF] mt-1 dark:text-[#5996FF]">
-                            {{ number_format($totalStock, 0, ',', '.') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stok Aman -->
-            <div class="bg-white rounded-xl shadow p-5 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center">
-                    <div class="p-3 bg-green-50 rounded-xl dark:bg-green-900/20">
-                        <svg class="w-6 h-6 text-[#5996FF] dark:text-[#3874FF]" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 6.707 8.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l4-4z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-gray-500 text-sm font-medium dark:text-gray-400">Stok Aman</h3>
-                        <p class="text-3xl font-bold text-[#5996FF] mt-1 dark:text-[#3874FF]">
-                            {{ number_format($safeStock, 0, ',', '.') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stok Menipis -->
-            <div class="bg-white rounded-xl shadow p-5 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex items-center">
-                    <div class="p-3 bg-red-50 rounded-xl dark:bg-red-900/20">
-                        <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-gray-500 text-sm font-medium dark:text-gray-400">Stok Menipis</h3>
-                        <p class="text-3xl font-bold text-red-600 mt-1 dark:text-red-400">
-                            {{ number_format($lowStock, 0, ',', '.') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-
-            {{-- Grafik --}}
+            <!-- Container Utama dengan Latar Krem Hangat -->
             <div
-                class="xl:col-span-2 bg-white rounded-xl shadow p-6 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
+                class="w-full min-h-screen bg-[#FFFDF8] dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden font-sans relative">
 
-                <h2 class="text-lg font-semibold mb-5 text-[#1B4EF5] dark:text-[#3874FF]">
-                    Grafik Status Produk
-                </h2>
+                <!-- ================= HERO SECTION (1 LAYAR PENUH) ================= -->
+                <section
+                    class="relative w-full min-h-[calc(100vh-4rem)] flex items-stretch bg-gradient-to-b from-[#FFF9EB] via-[#FFFDF6] to-[#FFFDF8] dark:from-gray-900 dark:to-gray-900 pt-6 md:pt-0 overflow-hidden">
 
-                <div id="stock-chart"></div>
+                    <!-- Bentuk Kuning Organik Full Kanan & Penuh Sampai Bawah -->
+                    <div class="hidden md:block absolute inset-y-0 right-0 w-[62%] pointer-events-none z-0">
+                        <svg viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full"
+                            preserveAspectRatio="none">
+                            <path d="M800 0H470C430 110 310 130 260 250C210 370 110 460 40 620C10 690 0 760 0 800H800V0Z"
+                                fill="#FDE6A0" class="dark:fill-[#4a3f1a]/60" />
+                            <path d="M800 30H530C480 150 370 160 310 280C250 400 150 490 80 650C50 720 35 775 25 800H800V30Z"
+                                fill="#FAD775" class="dark:fill-[#5e4f20]/60" />
+                        </svg>
+                    </div>
 
-            </div>
+                    <!-- Ornamen Paw Prints Cokelat di Area Hero -->
+                    <div class="hidden md:block pointer-events-none z-10">
+                        <svg class="w-6 h-6 text-[#9C6526] dark:text-[#FDE6A4] absolute top-6 right-[9%] rotate-12"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-8 h-8 text-[#9C6526] dark:text-[#FDE6A4] absolute top-[14%] right-[22%] -rotate-12"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-7 h-7 text-[#9C6526] dark:text-[#FDE6A4] absolute top-[38%] right-[51%] -rotate-12"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-9 h-9 text-[#9C6526] dark:text-[#FDE6A4] absolute bottom-[18%] right-[50%] -rotate-12"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-8 h-8 text-[#9C6526] dark:text-[#FDE6A4] absolute top-[35%] right-[4%] rotate-12"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-9 h-9 text-[#9C6526] dark:text-[#FDE6A4] absolute bottom-[22%] right-[6%] rotate-12"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                    </div>
 
-            {{-- Statistik Transaksi --}}
-            <div class="space-y-5">
+                    <!-- Kontainer Utama Hero -->
+                    <div
+                        class="relative z-10 w-full max-w-[1280px] mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center md:items-stretch justify-between gap-6">
 
-                <div class="bg-white rounded-xl shadow p-6 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
+                        <!-- TEKS KIRI -->
+                        <div class="w-full md:w-[46%] flex flex-col justify-center items-start text-left pb-8 md:pb-20">
+                            <h1
+                                class="text-[34px] md:text-[44px] lg:text-[50px] font-extrabold leading-[1.12] mb-4 text-[#4A2508] dark:text-white tracking-tight relative inline-block">
+                                Diagnosa Lebih Awal <br>
+                                <span class="text-[#F5820D]">FLUTD</span> Kucingmu <br>
+                                dengan BeLUTD
 
-                    <h3 class="text-gray-500 text-sm font-medium dark:text-gray-400">
-                        Barang Masuk
-                    </h3>
+                                <svg class="hidden md:block w-9 h-9 text-[#F7C631] absolute -right-10 -top-1" viewBox="0 0 40 40"
+                                    fill="none">
+                                    <path d="M6 16L18 6" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+                                    <path d="M10 25L26 19" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+                                    <path d="M11 33L24 34" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+                                </svg>
+                            </h1>
 
-                    <p class="text-4xl font-bold text-green-600 mt-3 dark:text-green-400">
-                        {{ number_format($barangMasuk, 0, ',', '.') }}
-                    </p>
+                            <p class="text-[#4A2508]/85 dark:text-gray-300 mb-7 leading-relaxed text-sm md:text-[15px] max-w-md">
+                                Sering curiga dengan gejala FLUTD? Jangan tunggu sampai terlambat! Pakai BeLUTD untuk menganalisis
+                                kondisi kesehatan kucingmu secara mandiri dan dapatkan penanganan awal yang tepat.
+                            </p>
 
-                    <p class="text-sm text-gray-400 mt-2 dark:text-gray-500">
-                        Transaksi diterima
-                    </p>
+                            <div class="flex flex-wrap gap-3">
+                        <a href="{{ route('diagnosis') }}"
+                            class=" bg-gradient-to-r from-[#F28500] to-[#C85A00] text-white px-6 py-2.5 rounded-xl font-bold
+                            hover:brightness-105 transition shadow-md shadow-orange-500/20 text-xs md:text-sm">
+                            Diagnosa Sekarang
+                        </a>
+                                <a href="#tentang-flutd"
+                                    class="bg-white/90 dark:bg-gray-800 border border-[#6E4726] text-[#4A2508] dark:text-[#FDE6A4] dark:border-[#FDE6A4] px-6 py-2.5 rounded-xl font-bold hover:bg-[#FFF5D6] dark:hover:bg-gray-700 transition text-xs md:text-sm">
+                                    Tentang FLUTD
+                                </a>
+                            </div>
+                        </div>
 
+                        <!-- GAMBAR KANAN -->
+                        <div class="w-full md:w-[54%] relative flex justify-center md:justify-end items-end self-end pt-6 md:pt-12">
+                            <div class="relative w-full max-w-sm md:max-w-[500px] flex items-end justify-center">
+                                <svg class="hidden md:block w-12 h-12 text-[#F7C631] absolute -top-8 left-[28%] z-20"
+                                    viewBox="0 0 48 48" fill="none">
+                                    <path d="M12 10L18 34" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+                                    <path d="M30 6L28 32" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" />
+                                </svg>
+
+                                <img src="{{ asset('image_assets/herosec.png') }}" alt="Kucing Oren"
+                                    class="relative z-10 w-full object-contain object-bottom mb-[-6px] md:mb-[-10px] drop-shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gelombang Pemisah -->
+                    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
+                        <svg viewBox="0 0 1440 110" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="w-full h-[55px] md:h-[85px]" preserveAspectRatio="none">
+                            <path d="M0 55C260 105 520 5 840 45C1120 80 1300 35 1440 15V110H0V55Z" fill="#FCE59B"
+                                class="dark:fill-[#4a3f1a]/70" />
+                            <path d="M0 78C310 115 620 20 960 58C1190 83 1340 50 1440 35V110H0V78Z" fill="#FFFDF8"
+                                class="dark:fill-gray-900" />
+                        </svg>
+                    </div>
+                </section>
+
+                <!-- ================= SECTION BAWAH ================= -->
+                <div id="tentang-flutd" class="relative w-full pt-8 pb-16 scroll-mt-16">
+
+                    <!-- Dekorasi Paw Prints Pudar -->
+                    <div class="hidden md:block pointer-events-none">
+                        <svg class="w-8 h-8 text-[#F5E1A4]/70 absolute top-14 left-[4%] -rotate-12" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-8 h-8 text-[#F5E1A4]/70 absolute top-12 right-[4%] rotate-12" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-7 h-7 text-[#F5E1A4]/70 absolute top-[26%] right-[3%] rotate-12" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-8 h-8 text-[#F5E1A4]/70 absolute top-[43%] left-[2.5%] -rotate-12" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <svg class="w-7 h-7 text-[#F5E1A4]/70 absolute top-[56%] left-[5%] -rotate-12" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                    </div>
+
+                    <!-- Konten -->
+                    <div class="max-w-[1280px] mx-auto px-5 md:px-8 relative z-10">
+
+                        <!-- DEFINITION -->
+                        <section class="text-center mb-10">
+                            <p
+                                class="text-base md:text-[19px] text-[#4A2508] dark:text-gray-200 leading-relaxed font-bold max-w-3xl mx-auto">
+                                Feline Lower Urinary Tract Disease (FLUTD) adalah istilah untuk menyebut berbagai penyakit pada
+                                saluran kemih bagian bawah kucing, terutama masalah yang terjadi di kandung kemih dan uretra.
+                                Penyakit ini biasanya ditandai oleh:
+                            </p>
+                        </section>
+
+                        <!-- SYMPTOMS GRID DENGAN TOOLTIP (TANPA IKON i) -->
+                        <section class="mb-20">
+                            @php
+    $symptoms1 = [
+        [
+            'name' => 'Hematuria',
+            'desc' => 'Terdapat darah pada urine sehingga warna kencing tampak kemerahan atau merah muda.'
+        ],
+        [
+            'name' => 'Stranguria',
+            'desc' => 'Kesulitan atau mengejan saat buang air kecil, sering disertai tanda kesakitan.'
+        ],
+        [
+            'name' => 'Periuria',
+            'desc' => 'Buang air kecil di luar kotak pasir (litter box), seperti di lantai, kasur, atau sudut ruangan.'
+        ],
+        [
+            'name' => 'Disuria',
+            'desc' => 'Rasa nyeri atau tidak nyaman saat buang air kecil, membuat kucing mengeong kesakitan di litter box.'
+        ],
+        [
+            'name' => 'Polakisuria',
+            'desc' => 'Frekuensi buang air kecil menjadi sangat sering namun urine yang keluar hanya sedikit.'
+        ],
+        [
+            'name' => 'Anuria',
+            'desc' => 'Tidak mampu mengeluarkan urine sama sekali akibat sumbatan total pada saluran kemih (kondisi darurat).'
+        ],
+        [
+            'name' => 'Oliguria',
+            'desc' => 'Volume atau jumlah urine yang dikeluarkan jauh lebih sedikit dari kondisi normal.'
+        ],
+        [
+            'name' => 'Muntah',
+            'desc' => 'Kucing mengalami muntah yang dapat dipicu oleh rasa nyeri hebat atau penumpukan racun akibat gangguan urine.'
+        ],
+        [
+            'name' => 'Dehidrasi',
+            'desc' => 'Tubuh kucing kekurangan cairan yang ditandai dengan gusi kering dan elastisitas kulit menurun.'
+        ],
+    ];
+
+    $symptoms2 = [
+        [
+            'name' => 'Penurunan Nafsu Makan',
+            'desc' => 'Kucing enggan makan atau porsi makannya berkurang drastis karena merasa nyeri dan tidak nyaman.'
+        ],
+        [
+            'name' => 'Penurunan Keaktifan',
+            'desc' => 'Kucing terlihat lesu, lebih banyak tidur, menyendiri, atau tidak bersemangat bermain seperti biasa.'
+        ],
+    ];
+                            @endphp
+
+                            <!-- Baris 1 - 3 (3 Kolom) -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                @foreach($symptoms1 as $symptom)
+                                    <div tabindex="0"
+                                        class="group relative bg-gradient-to-b from-[#FCE9A6] to-[#F9DC82] dark:from-[#4a3f1a] dark:to-[#3d3314] border border-[#F5D372]/60 dark:border-yellow-700/50 py-3.5 px-6 rounded-2xl text-center font-bold text-sm md:text-base text-[#4A2508] dark:text-gray-100 shadow-[0_3px_10px_rgba(218,165,32,0.12)] transition-all hover:-translate-y-0.5 hover:shadow-md cursor-help focus:outline-none focus:ring-2 focus:ring-[#F5820D]">
+                                        {{ $symptom['name'] }}
+
+                                        <!-- Tooltip Popover -->
+                                        <div role="tooltip"
+                                            class="pointer-events-none opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-200 absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-64 sm:w-72 p-3 rounded-xl bg-[#4A2508] dark:bg-gray-800 text-[#FFFDF8] text-xs font-medium leading-relaxed shadow-xl border border-[#F5820D]/40 z-30">
+                                            {{ $symptom['desc'] }}
+                                            <!-- Panah Bawah Tooltip -->
+                                            <div
+                                                class="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-[#4A2508] dark:border-t-gray-800">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Baris 4 (2 Kolom Terpusat) -->
+                            <div class="flex flex-col md:flex-row justify-center gap-4">
+                                @foreach($symptoms2 as $symptom)
+                                    <div tabindex="0"
+                                        class="group relative w-full md:w-[32.2%] bg-gradient-to-b from-[#FCE9A6] to-[#F9DC82] dark:from-[#4a3f1a] dark:to-[#3d3314] border border-[#F5D372]/60 dark:border-yellow-700/50 py-3.5 px-6 rounded-2xl text-center font-bold text-sm md:text-base text-[#4A2508] dark:text-gray-100 shadow-[0_3px_10px_rgba(218,165,32,0.12)] transition-all hover:-translate-y-0.5 hover:shadow-md cursor-help focus:outline-none focus:ring-2 focus:ring-[#F5820D]">
+                                        {{ $symptom['name'] }}
+
+                                        <!-- Tooltip Popover -->
+                                        <div role="tooltip"      class="pointer-events-none opacity-0 invisible group-hover:opacity-100
+                                            group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-200
+                                            absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-64 sm:w-72 p-3 rounded-xl
+                                            bg-[#4A2508] dark:bg-gray-800 text-[#FFFDF8] text-xs font-medium leading-relaxed shadow-xl
+                                            border border-[#F5820D]/40 z-30">
+                                            {{ $symptom['desc'] }}
+                                            <!-- Panah Bawah Tooltip -->
+                                            <div     class="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent
+                                                border-t-[#4A2508] dark:border-t-gray-800">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </section>
+
+                        <!-- FACTORS SECTION -->
+                        <section class="relative pt-2">
+                            <div class="relative flex items-center justify-center mb-10">
+                                <div class="hidden sm:block h-[2.5px] w-24 md:w-32 bg-[#F6CE55] rounded-full mr-4"></div>
+                                <h2 class="text-lg md:text-[21px] font-extrabold text-[#4A2508] dark:text-white text-center">
+                                    Dapat dipicu oleh beberapa faktor:
+                                </h2>
+                                <div class="hidden sm:block h-[2.5px] w-24 md:w-32 bg-[#F6CE55] rounded-full ml-4"></div>
+
+                                <div
+                                    class="hidden md:flex items-center justify-center absolute -right-4 -top-16 w-40 h-40 pointer-events-none">
+                                    <div class="w-28 h-28 rounded-full bg-[#FCE9A6]/80 dark:bg-[#4a3f1a]/60 absolute top-2 right-1">
+                                    </div>
+                                    <img src="{{ asset('image_assets/cat 1.png') }}" alt="Kucing Membaca"
+                                        class="relative z-10 w-36 object-contain">
+                                </div>
+                            </div>
+
+                            <!-- Grid 5 kolom -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                                <!-- Card 1 -->
+                                <div
+                                    class="bg-white dark:bg-gray-800 border border-[#F3E5C8] dark:border-gray-700 rounded-2xl p-4 shadow-[0_4px_15px_rgba(74,37,8,0.05)] hover:shadow-md transition flex flex-col">
+                                    <img src="{{ asset('image_assets/jk.jpg') }}"
+                                        class="w-full h-36 xl:h-40 object-cover rounded-xl mb-4" alt="Umur Kalender">
+                                    <div class="px-0.5 pb-1">
+                                        <h3 class="font-bold text-sm md:text-[15px] mb-2 text-[#4A2508] dark:text-white">Jenis Kelamin</h3>
+                                            <p class="text-xs md:text-[13px] text-[#5C3D24]/85 dark:text-gray-400 leading-relaxed">
+                                                Kucing yang lebih tua cenderung lebih rentan mengalami FLUTD karena risiko penyakit
+                                                meningkat.
+                                            </p>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2 -->
+                                <div
+                                    class="bg-white dark:bg-gray-800 border border-[#F3E5C8] dark:border-gray-700 rounded-2xl p-4 shadow-[0_4px_15px_rgba(74,37,8,0.05)] hover:shadow-md transition flex flex-col">
+                                    <img src="{{ asset('image_assets/obesitas.jpg') }}"
+                                        class="w-full h-36 xl:h-40 object-cover rounded-xl mb-4" alt="Obesitas">
+                                    <div class="px-0.5 pb-1">
+                                        <h3 class="font-bold text-sm md:text-[15px] mb-2 text-[#4A2508] dark:text-white">Obesitas
+                                        </h3>
+                                        <p class="text-xs md:text-[13px] text-[#5C3D24]/85 dark:text-gray-400 leading-relaxed">
+                                            Kelebihan berat badan dapat meningkatkan risiko terjadinya FLUTD pada kucing.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3 -->
+                                <div
+                                    class="bg-white dark:bg-gray-800 border border-[#F3E5C8] dark:border-gray-700 rounded-2xl p-4 shadow-[0_4px_15px_rgba(74,37,8,0.05)] hover:shadow-md transition flex flex-col">
+                                    <img src="{{ asset('image_assets/stres.jpg') }}"
+                                            class=" w-full h-36 xl:h-40 object-cover rounded-xl mb-4" alt="Stress">
+                                    <div class="px-0.5 pb-1">
+                                        <h3 class="font-bold text-sm md:text-[15px] mb-2 text-[#4A2508] dark:text-white">Stress</h3>
+                                        <p class="text-xs md:text-[13px] text-[#5C3D24]/85 dark:text-gray-400 leading-relaxed">
+                                            Kucing yang stres dapat mengalami perubahan perilaku dan meningkatkan risiko FLUTD.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Card 4 -->
+                                <div
+                                    class="bg-white dark:bg-gray-800 border border-[#F3E5C8] dark:border-gray-700 rounded-2xl p-4 shadow-[0_4px_15px_rgba(74,37,8,0.05)] hover:shadow-md transition flex flex-col">
+                                    <img src="{{ asset('image_assets/jp.jpg') }}" class="w-full h-36 xl:h-40 object-cover rounded-xl
+                                        mb-4" alt="Jenis Pakan">
+                                    <div class="px-0.5 pb-1">
+                                        <h3 class="font-bold text-sm md:text-[15px] mb-2 text-[#4A2508] dark:text-white">Jenis Pakan
+                                        </h3>
+                                        <p class="text-xs md:text-[13px] text-[#5C3D24]/85 dark:text-gray-400 leading-relaxed">
+                                            Pakan yang tidak sesuai dengan kebutuhan kucing dapat memicu FLUTD.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Card 5 -->
+                                <div
+                                    class="bg-white dark:bg-gray-800 border border-[#F3E5C8] dark:border-gray-700 rounded-2xl p-4 shadow-[0_4px_15px_rgba(74,37,8,0.05)] hover:shadow-md transition flex flex-col">
+                                    <img src="{{ asset('image_assets/steril.jpg') }}"
+                                        class="w-full h-36 xl:h-40 object-cover rounded-xl mb-4" alt="Cuaca dan Iklim">
+                                    <div class="px-0.5 pb-1">
+                                        <h3 class="font-bold text-sm md:text-[15px] mb-2 text-[#4A2508] dark:text-white">Status Sterilisasi</h3>
+                                        <p class="text-xs md:text-[13px] text-[#5C3D24]/85 dark:text-gray-400 leading-relaxed">
+                                            Perubahan cuaca ekstrem dapat memengaruhi kesehatan saluran kemih pada kucing.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow p-6 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
-
-                    <h3 class="text-gray-500 text-sm font-medium dark:text-gray-400">
-                        Barang Keluar
-                    </h3>
-
-                    <p class="text-4xl font-bold text-red-600 mt-3 dark:text-red-400">
-                        {{ number_format($barangKeluar, 0, ',', '.') }}
-                    </p>
-
-                    <p class="text-sm text-gray-400 mt-2 dark:text-gray-500">
-                        Transaksi dikeluarkan
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        {{-- Produk Restock --}}
-        <div class="bg-white rounded-xl shadow mt-6 border border-[#E8D5F5] dark:bg-gray-800 dark:border-gray-700">
-
-            <div class="p-5 border-b border-[#E8D5F5] dark:border-gray-700">
-
-                <h2 class="font-semibold text-[#1B4EF5] dark:text-[#3874FF]">
-                    Produk yang Perlu Restock
-                </h2>
+                <!-- ================= FOOTER DATAR SEDERHANA ================= -->
+                <footer
+                    class="w-full bg-[#FCE9A6]/60 dark:bg-gray-800/80 border-t border-[#F5D372]/60 dark:border-gray-700 py-5 px-5 transition-colors duration-300">
+                    <div
+                        class="max-w-[1280px] mx-auto flex items-center justify-center gap-1.5 text-xs font-semibold text-[#5C3D24] dark:text-[#FDE6A4] text-center">
+                        <svg class="w-3.5 h-3.5 text-[#F28500] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8" />
+                            <circle cx="6.5" cy="10.5" r="2" />
+                            <circle cx="10" cy="7.5" r="2.1" />
+                            <circle cx="14.5" cy="7.5" r="2.1" />
+                            <circle cx="18" cy="10.5" r="2" />
+                        </svg>
+                        <span>&copy; 2026 BeLUTD | Diagnosis Awal, Kucing Sehat, Keluarga Bahagia</span>
+                    </div>
+                </footer>
 
             </div>
-
-            <div class="overflow-x-auto">
-
-                <table class="min-w-full">
-
-                    <thead class="bg-[#F5F0FF] dark:bg-gray-700">
-
-                        <tr>
-
-                            <th
-                                class="px-4 py-3 text-left text-xs font-medium text-[#1B4EF5] uppercase dark:text-[#3874FF]">
-                                Produk
-                            </th>
-
-                            <th
-                                class="px-4 py-3 text-center text-xs font-medium text-[#1B4EF5] uppercase dark:text-[#3874FF]">
-                                Stok
-                            </th>
-
-                            <th
-                                class="px-4 py-3 text-center text-xs font-medium text-[#1B4EF5] uppercase dark:text-[#3874FF]">
-                                Minimum
-                            </th>
-
-                            <th
-                                class="px-4 py-3 text-center text-xs font-medium text-[#1B4EF5] uppercase dark:text-[#3874FF]">
-                                Status
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        @forelse($lowStockProducts as $product)
-
-                            <tr
-                                class="border-b border-[#E8D5F5] hover:bg-[#F5F0FF] transition-colors duration-200 dark:border-gray-700 dark:hover:bg-gray-700">
-
-                                <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                    {{ $product->name }}
-                                </td>
-
-                                <td class="px-4 py-3 text-center text-sm text-gray-900 dark:text-white">
-                                    {{ number_format($product->stock, 0, ',', '.') }}
-                                </td>
-
-                                <td class="px-4 py-3 text-center text-sm text-gray-900 dark:text-white">
-                                    {{ number_format($product->minimum_stock, 0, ',', '.') }}
-                                </td>
-
-                                <td class="px-4 py-3 text-center">
-
-                                    <span
-                                        class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-medium dark:bg-red-900 dark:text-red-300">
-
-                                        Stok Menipis
-
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-                        @empty
-
-                            <tr>
-
-                                <td colspan="4" class="text-center py-5 text-gray-500 text-sm dark:text-gray-400">
-
-                                    Semua stok aman.
-
-                                </td>
-
-                            </tr>
-
-                        @endforelse
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <script>
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            var options = {
-
-                chart: {
-
-                    type: 'bar',
-
-                    height: 350,
-
-                    background: 'transparent'
-
-                },
-
-                theme: {
-
-                    mode: document.documentElement.classList.contains('dark') ? 'dark' : 'light'
-
-                },
-
-                series: [
-
-                    {
-
-                        name: 'Jumlah Produk',
-
-                        data: [
-
-                                  {{ $safeStock }},
-
-                            {{ $lowStock }}
-
-                        ]
-
-                    }
-
-                ],
-
-                xaxis: {
-
-                    categories: [
-
-                        'Stok Aman',
-
-                        'Stok Menipis'
-
-                    ],
-
-                    labels: {
-
-                        style: {
-
-                            colors: document.documentElement.classList.contains('dark') ? '#9CA3AF' : '#6B7280'
-
-                        }
-
-                    }
-
-                },
-
-                yaxis: {
-
-                    labels: {
-
-                        style: {
-
-                            colors: document.documentElement.classList.contains('dark') ? '#9CA3AF' : '#6B7280'
-
-                        }
-
-                    }
-
-                },
-
-                grid: {
-
-                    borderColor: document.documentElement.classList.contains('dark') ? '#374151' : '#E5E7EB'
-
-                },
-
-                colors: [
-
-                    '#1B4EF5'
-
-                ]
-
-            };
-
-            let chart = new ApexCharts(
-
-                document.querySelector("#stock-chart"),
-
-                options
-
-            );
-
-            chart.render();
-
-        });
-
-    </script>
-
 @endsection

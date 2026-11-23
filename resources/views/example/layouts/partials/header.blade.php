@@ -4,7 +4,7 @@
 <meta name="author" content="#">
 <meta name="generator" content="Laravel">
 
-<title>{{ $title ?? 'Stockify' }}</title>
+<title>{{ $title ?? 'BeLUTD' }}</title>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 <link rel="canonical" href="{{ request()->fullUrl() }}">
 
@@ -14,6 +14,12 @@
 
 @include('example.layouts.partials.stylesheet')
 @include('example.layouts.partials.favicons')
+
+<!-- Favicon / Logo Tab Browser -->
+<link rel="icon" type="image/png" href="{{ asset('image_assets/logo.png') }}">
+<link rel="shortcut icon" type="image/png" href="{{ asset('image_assets/logo.png') }}">
+<link rel="apple-touch-icon" href="{{ asset('image_assets/logo.png') }}">
+
 @include('example.layouts.partials.social')
 @include('example.layouts.partials.analytics')
 
